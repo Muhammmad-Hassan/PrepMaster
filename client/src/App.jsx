@@ -9,6 +9,8 @@ import Home from "./pages/Home.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Contact from "./pages/Contact.jsx";
 import About from "./pages/About.jsx";
+import TeacherSignIn from "./pages/auth/TeacherSignIn.jsx";
+import TeacherSignUp from "./pages/auth/TeacherSignUp.jsx";
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact/>}/>
+          <Route path="/techersigin" element={<TeacherSignIn/>}/>
+          <Route path="/techersignup" element={<TeacherSignUp/>}/>
+          
         </Routes>
       </Router>
     </>

@@ -83,7 +83,7 @@ const TeacherSignIn = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-600 text-sm">
             Don't have an account?{" "}
-            <Link to="/teacher-signup" className="text-blue-500 hover:text-blue-700">
+            <Link to="/techersignup" className="text-blue-500 hover:text-blue-700">
               Sign Up
             </Link>
           </p>

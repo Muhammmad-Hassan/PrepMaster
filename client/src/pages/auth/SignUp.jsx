@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Importing Link from react-router-dom
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -94,6 +95,15 @@ const SignUp = () => {
           >
             Sign Up
           </button>
+        </div>
+
+        <div className="mt-4 text-center">
+          <p className="text-gray-600 text-sm">
+            Already have an account?{" "}
+            <Link to="/signin" className="text-blue-500 hover:text-blue-700">
+              Sign In
+            </Link>
+          </p>
         </div>
       </form>
     </div>

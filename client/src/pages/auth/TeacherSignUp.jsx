@@ -116,20 +116,21 @@ const TeacherSignUp = () => {
         </div>
 
         {/* Submit Button */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center flex-col justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Sign Up
           </button>
+          
         </div>
 
         {/* Sign In Link */}
         <div className="mt-4 text-center">
           <p className="text-gray-600 text-sm">
             Already have an account?{" "}
-            <Link to="/teacher-signin" className="text-blue-500 hover:text-blue-700">
+            <Link to="/techersigin" className="text-blue-500 hover:text-blue-700">
               Sign In
             </Link>
           </p>

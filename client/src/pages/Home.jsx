@@ -7,11 +7,11 @@ function Home() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/SignIn');
+    navigate('/signup');
   };
 
-  const handleHowWorks = () => {
-    navigate('/TeacherSignUp');
+  const handelSignUp = () => {
+    navigate('/techersigup');
   };
 
   return (
@@ -33,7 +33,7 @@ function Home() {
             </button>
             <button
               className="px-4 py-2 bg-green-500 text-white md:text-lg rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-transform duration-300"
-              onClick={handleHowWorks}
+              onClick={handelSignUp}
             >
               Register Teachers
             </button>
