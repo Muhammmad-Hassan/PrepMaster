@@ -1,28 +1,103 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-require('dotenv').config();
+import React, { useState } from "react";
+import axios from "axios";
 
-const authRoutes = require('./routes/auth');
+const SignUp = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
 
-const app = express();
-const port = process.env.PORT || 5000;
+  const [error, setError] = useState("");
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
-// Connect to the database
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  console.log('MongoDB connected successfully');
-}).catch((error) => {
-  console.error('Database connection error:', error);
-});
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/api/signup", formData);
+      alert("Signup successful");
+      console.log(response.data);
+    } catch (err) {
+      setError("Failed to signup");
+      console.error(err);
+    }
+  };
 
-// Routes
-app.use('/api/auth', authRoutes);
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <form 
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-sm" 
+        onSubmit={handleSubmit}
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
 
-// Start server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+            Name
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default SignUp;

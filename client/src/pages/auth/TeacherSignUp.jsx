@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 
 const TeacherSignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
-    subject: "",
-    contact: "",
-    testSeries: "",
-    education: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    email: "", // Add email
+    password: "", // Add password
+    testSeries: "ECAT", // Default value for the dropdown
   });
 
   const [error, setError] = useState("");
@@ -19,16 +16,12 @@ const TeacherSignUp = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
     try {
       const response = await axios.post("http://localhost:5000/api/teacher-signup", formData);
       setSuccessMessage("Signup successful");
@@ -42,8 +35,8 @@ const TeacherSignUp = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form 
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-sm" 
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-sm"
         onSubmit={handleSubmit}
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Teacher Sign Up</h2>
@@ -51,6 +44,7 @@ const TeacherSignUp = () => {
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         {successMessage && <p className="text-green-500 text-sm mb-4">{successMessage}</p>}
 
+        {/* Name Field */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
             Name
@@ -67,70 +61,7 @@ const TeacherSignUp = () => {
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="subject">
-            Subject
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="subject"
-            name="subject"
-            type="text"
-            placeholder="Enter your subject"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="contact">
-            Contact Number
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="contact"
-            name="contact"
-            type="text"
-            placeholder="Enter your contact number"
-            value={formData.contact}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="testSeries">
-            Test Series Name
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="testSeries"
-            name="testSeries"
-            type="text"
-            placeholder="Enter test series name"
-            value={formData.testSeries}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="education">
-            Education
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="education"
-            name="education"
-            type="text"
-            placeholder="Enter your education"
-            value={formData.education}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
+        {/* Email Field */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
             Email
@@ -147,7 +78,8 @@ const TeacherSignUp = () => {
           />
         </div>
 
-        <div className="mb-4">
+        {/* Password Field */}
+        <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
@@ -163,22 +95,27 @@ const TeacherSignUp = () => {
           />
         </div>
 
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-            Confirm Password
+        {/* Test Series Dropdown */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="testSeries">
+            Test Series
           </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm your password"
-            value={formData.confirmPassword}
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="testSeries"
+            name="testSeries"
+            value={formData.testSeries}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="ECAT">ECAT</option>
+            <option value="MDCAT">MDCAT</option>
+            <option value="NTS">NTS</option>
+            <option value="SAT">SAT</option>
+          </select>
         </div>
 
+        {/* Submit Button */}
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -186,6 +123,16 @@ const TeacherSignUp = () => {
           >
             Sign Up
           </button>
+        </div>
+
+        {/* Sign In Link */}
+        <div className="mt-4 text-center">
+          <p className="text-gray-600 text-sm">
+            Already have an account?{" "}
+            <Link to="/teacher-signin" className="text-blue-500 hover:text-blue-700">
+              Sign In
+            </Link>
+          </p>
         </div>
       </form>
     </div>
