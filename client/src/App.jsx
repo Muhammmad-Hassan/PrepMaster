@@ -7,7 +7,8 @@ import SignUp from "./pages/auth/SignUp.jsx";
 // import RouteWrapper from "./components/RouteWrapper.jsx";
 import Home from "./pages/Home.jsx";
 import NavBar from "./components/NavBar.jsx";
-import AboutPage from "./pages/About.jsx";
+import Contact from "./pages/Contact.jsx";
+import About from "./pages/About.jsx";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/SignIn" element={<SignIn />}  />
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/about" element={<AboutPage/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}/>
         </Routes>
       </Router>
     </>
