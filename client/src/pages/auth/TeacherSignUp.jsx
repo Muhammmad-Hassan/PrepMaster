@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 
 const TeacherSignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
-    subject: "",
-    contact: "",
-    testSeries: "",
-    education: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    testSeries: "ECAT", // Default value for the dropdown
   });
 
   const [error, setError] = useState("");
@@ -25,10 +20,6 @@ const TeacherSignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
     try {
       const response = await axios.post("http://localhost:5000/api/teacher-signup", formData);
       setSuccessMessage("Signup successful");
@@ -68,115 +59,22 @@ const TeacherSignUp = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="subject">
-            Subject
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="subject"
-            name="subject"
-            type="text"
-            placeholder="Enter your subject"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="contact">
-            Contact Number
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="contact"
-            name="contact"
-            type="text"
-            placeholder="Enter your contact number"
-            value={formData.contact}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="testSeries">
-            Test Series Name
+            Test Series
           </label>
-          <input
+          <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="testSeries"
             name="testSeries"
-            type="text"
-            placeholder="Enter test series name"
             value={formData.testSeries}
             onChange={handleChange}
             required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="education">
-            Education
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="education"
-            name="education"
-            type="text"
-            placeholder="Enter your education"
-            value={formData.education}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-            Confirm Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm your password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+          >
+            <option value="ECAT">ECAT</option>
+            <option value="MDCAT">MDCAT</option>
+            <option value="NTS">NTS</option>
+            <option value="SAT">SAT</option>
+          </select>
         </div>
 
         <div className="flex items-center justify-between">
@@ -186,6 +84,15 @@ const TeacherSignUp = () => {
           >
             Sign Up
           </button>
+        </div>
+
+        <div className="mt-4 text-center">
+          <p className="text-gray-600 text-sm">
+            Already have an account?{" "}
+            <Link to="/teacher-signin" className="text-blue-500 hover:text-blue-700">
+              Sign In
+            </Link>
+          </p>
         </div>
       </form>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 
 const TeacherSignIn = () => {
   const [formData, setFormData] = useState({
@@ -77,6 +78,15 @@ const TeacherSignIn = () => {
           >
             Sign In
           </button>
+        </div>
+
+        <div className="mt-4 text-center">
+          <p className="text-gray-600 text-sm">
+            Don't have an account?{" "}
+            <Link to="/teacher-signup" className="text-blue-500 hover:text-blue-700">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </form>
     </div>

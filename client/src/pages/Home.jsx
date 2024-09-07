@@ -11,7 +11,7 @@ function Home() {
   };
 
   const handleHowWorks = () => {
-    navigate('/SignUp');
+    navigate('/TeacherSignUp');
   };
 
   return (
