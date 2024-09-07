@@ -60,51 +60,7 @@ const Navbar = () => {
        
        
 
-        <div className="relative">
-          <button
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="hover:shadow-lg font-semibold text-zinc-600  lg:mx-2 text-md focus:text-blue-400 rounded-lg transition-all duration-200 hover:text-blue-400 px-4"
-          >
-            Drop
-          </button>
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className={`absolute top-5 left-0 mt-1 w-[200px] bg- shadow-xl rounded-lg bg-[#E5FCFE] ${
-              subCat ? "block" : "hidden"
-            }`}
-          >
-             <Link
-              to="/assignments"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Assignments
-            </Link>
-            <Link
-              to="/complaints"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Complaints
-            </Link>
-            <Link
-              to="/courses"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Courses
-            </Link>
-            <Link
-              to="/profile"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Profile
-            </Link>
-          </div>
-        </div>
+        
 
         <Link
           to="/contact"
@@ -149,52 +105,7 @@ const Navbar = () => {
         </Link>
        
 
-        <div className="relative  ">
-          <button
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="hover:shadow-lg font-semibold text-zinc-600  lg:mx-2 text-md focus:text-blue-400 rounded-lg transition-all duration-200 hover:text-blue-400 px-4"
-          >
-            Drop
-          </button>
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className={`absolute top-5 left-0 mt-1 w-[200px] bg- shadow-xl rounded-lg bg-[#E5FCFE] ${
-              subCat ? "block" : "hidden"
-            }`}
-          >
-             <Link
-              to="/assignments"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Assignments
-            </Link>
-            <Link
-              to="/complaints"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Complaints
-            </Link>
-            <Link
-              to="/courses"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Courses
-            </Link>
-            <Link
-              to="/profile"
-              onClick={handleCatergaoryClick}
-              className="block py-2 px-4 text-sm text-gray-800 hover:bg-gray-200"
-            >
-              Profile
-            </Link>
-          </div>
-        </div>
-
+       
         <Link
           to="/contact"
           onClick={() => setMenuOpen(false)}

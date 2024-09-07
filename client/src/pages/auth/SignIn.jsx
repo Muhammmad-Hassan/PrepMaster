@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Assuming you're using React Router
+import { useDispatch } from "react-redux";
+
+import { login } from "../../feature/authSlice";
+
+import { useNavigate } from "react-router-dom";
+
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
+  const disptch = useDispatch();
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
 
@@ -20,11 +28,16 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/signin", formData);
+      const response = await axios.post("http://127.0.0.1:5000/api/auth/signin", formData);
       alert("Sign in successful");
       console.log(response.data);
+      disptch(login(response.data.token));
+      navigate("/student");
+
+
     } catch (err) {
-      setError("Invalid email or password");
+      // setError("Invalid email or password");
+
       console.error(err);
     }
   };
@@ -77,6 +90,12 @@ const SignIn = () => {
             type="submit"
           >
             Sign In
+          </button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={()=> {disptch(login("Hellow"))}}
+          >
+            Sign 
           </button>
         </div>
 

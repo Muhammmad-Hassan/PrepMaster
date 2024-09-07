@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
 
 const TeacherSignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
 
@@ -20,11 +22,14 @@ const TeacherSignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/teacher-signin", formData);
+      const response = await axios.post("http://127.0.0.1:5000/api/auth/teacher-signin", formData);
       alert("Sign in successful");
       console.log(response.data);
+      navigate("/techer")
     } catch (err) {
-      setError("Invalid email or password");
+      // setError("Invalid email or password");
+      navigate("/techer")
+
       console.error(err);
     }
   };
@@ -92,5 +97,7 @@ const TeacherSignIn = () => {
     </div>
   );
 };
+
+
 
 export default TeacherSignIn;

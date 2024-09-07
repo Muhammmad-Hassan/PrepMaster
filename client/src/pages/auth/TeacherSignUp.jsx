@@ -23,7 +23,7 @@ const TeacherSignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/teacher-signup", formData);
+      const response = await axios.post("http://127.0.0.1:5000/api/auth/teacher-signup", formData);
       setSuccessMessage("Signup successful");
       setError("");
       console.log(response.data);

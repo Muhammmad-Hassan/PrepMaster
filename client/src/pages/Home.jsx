@@ -11,7 +11,7 @@ function Home() {
   };
 
   const handelSignUp = () => {
-    navigate('/techersigup');
+    navigate('/techersignup');
   };
 
   return (
